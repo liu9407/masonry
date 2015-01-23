@@ -7,7 +7,7 @@
   <meta name="keywords" content="">
   <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Masonry 结合 ScrollSpy 使用 | Amaze UI 插件</title>
+  <title>Masonry 结合 Panel 使用 | Amaze UI 插件</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <link rel="icon" type="image/png"
@@ -47,33 +47,34 @@
 
 <section class="amp-main">
   <div class="am-container">
-    <h1><a name="Masonry%20%E7%BB%93%E5%90%88%20ScrollSpy%20%E4%BD%BF%E7%94%A8" class="anchor" href="#Masonry%20%E7%BB%93%E5%90%88%20ScrollSpy%20%E4%BD%BF%E7%94%A8"><span class="header-link"></span></a>Masonry 结合 ScrollSpy 使用</h1><hr>
+    <h1><a name="Masonry%20%E7%BB%93%E5%90%88%20Panel%20%E4%BD%BF%E7%94%A8" class="anchor" href="#Masonry%20%E7%BB%93%E5%90%88%20Panel%20%E4%BD%BF%E7%94%A8"><span class="header-link"></span></a>Masonry 结合 Panel 使用</h1><hr>
 <div id="js-container">
 
 </div>
 
+<div id="load-more"><button class="am-btn am-btn-primary">载入更多</button></div>
 
-<script>
-  (function($) {
-    if (!$) {
-      return false;
-    }
-
-    $(function() {
-      var $c = $('#js-container');
-      $.getJSON('https://api.douban.com/v2/event/list?loc=beijing&type=music&callback=?').
-        then(function(data) {
-          data.events.forEach(function(item, index) {
-            if (index === 0) {
-              $c.append('<img src="' + item.image + '" />');
-            }
-          });
-          console.log(data);
-        })
-    });
-
-  })(window.jQuery);
+<script type="text/x-handlebars-template" id="tpl-list">
+  {{#each events}}
+  <div class="msry-item">
+    <section class="am-panel am-panel-default">
+      <header class="am-panel-hd">
+        <h3 class="am-panel-title">{{title}}</h3>
+      </header>
+      <div class="am-panel-bd">
+        开始：{{begin_time}} <br/>
+        结束： {{begin_time}}<br/>
+        地点：{{address}} <br/>
+        类型： {{category_name}} <br/>
+        <a href="{{alt}}" target="_blank">查看详情 &rarrlp;</a>
+      </div>
+    </section>
+  </div>
+  {{/each}}
 </script>
+
+<script src="../masonry.pkgd.min.js"></script>
+<script src="../bundle.js"></script>
 
 
 
