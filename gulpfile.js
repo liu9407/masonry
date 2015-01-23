@@ -67,7 +67,7 @@ gulp.task('bundle', function() {
     return b.bundle();
   });
 
-  gulp.src('src/js/main.js')
+  return gulp.src('src/js/main.js')
     .pipe(bundler)
     .pipe($.rename({
       basename: 'bundle'

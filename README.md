@@ -5,6 +5,10 @@ Masonry 是一个瀑布流布局插件。本项目是 Masonry 与 Amaze UI 结�
 
 完整信息请查看 [Masonry 官网](http://masonry.desandro.com)。
 
+**结合 Amaze UI 使用演示：**
+
+- [动态载入内容并使用 Panel 呈现](http://amazeui.github.io/masonry/docs/panel.html)
+
 ## 获取 Masonry
 
 - **下载打包好的文件：**
