@@ -7,7 +7,7 @@
   <meta name="keywords" content="">
   <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Masonry | Amaze UI 插件</title>
+  <title>Masonry 结合 ScrollSpy 使用 | Amaze UI 插件</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <link rel="icon" type="image/png"
@@ -47,33 +47,35 @@
 
 <section class="amp-main">
   <div class="am-container">
-    <h1><a name="Masonry" class="anchor" href="#Masonry"><span class="header-link"></span></a>Masonry</h1><hr>
-<p>Masonry 是一个瀑布流布局插件。本项目是 Masonry 与 Amaze UI 结合使用的示例。</p>
-<p>完整信息请查看 <a href="http://masonry.desandro.com">Masonry 官网</a>。</p>
-<h2><a name="%E8%8E%B7%E5%8F%96%20Masonry" class="anchor" href="#%E8%8E%B7%E5%8F%96%20Masonry"><span class="header-link"></span></a>获取 Masonry</h2><ul>
-<li><p><strong>下载打包好的文件：</strong></p>
-<ul>
-<li><a href="masonry.pkgd.min.js">masonry.pkgd.min.js</a></li>
-<li><a href="masonry.pkgd.js">masonry.pkgd.js</a></li>
-</ul>
-</li>
-<li><p><strong>使用 Bower：</strong></p>
-<pre>bower install masonry</pre></li>
-<li><p><strong>使用 NPM：</strong></p>
-<pre>npm install masonry-layout</pre></li>
-</ul>
-<h2><a name="%E5%88%9D%E5%A7%8B%E5%8C%96" class="anchor" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="header-link"></span></a>初始化</h2><h3><a name="%E4%BB%A5%20JavaScript%20%E6%96%B9%E5%BC%8F" class="anchor" href="#%E4%BB%A5%20JavaScript%20%E6%96%B9%E5%BC%8F"><span class="header-link"></span></a>以 JavaScript 方式</h3><div class="doc-code demo-highlight"><pre><code class="javascript"><span class="hljs-keyword">var</span> container = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#container'</span>);
-<span class="hljs-keyword">var</span> msnry = <span class="hljs-keyword">new</span> Masonry( container, {
-  <span class="hljs-comment">// options...</span>
-  itemSelector: <span class="hljs-string">'.item'</span>,
-  columnWidth: <span class="hljs-number">200</span>
-});</code></pre></div><h3><a name="%E4%BB%A5%20HTML%20%E6%96%B9%E5%BC%8F" class="anchor" href="#%E4%BB%A5%20HTML%20%E6%96%B9%E5%BC%8F"><span class="header-link"></span></a>以 HTML 方式</h3><p>在元素上添加 <code>js-masonry</code> class，选项可以以 JSON 格式写在 <code>data-masonry-options</code> 属性上。</p>
-<div class="doc-code demo-highlight"><pre><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"js-masonry"</span> <span class="hljs-attribute">data-masonry-options</span>=<span class="hljs-value">'{ "itemSelector": ".item", "columnWidth": 200 }'</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-  ...
-<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre></div><h2><a name="License" class="anchor" href="#License"><span class="header-link"></span></a>License</h2><p>Masonry is released under the <a href="http://desandro.mit-license.org">MIT license</a>. Have at it.</p>
-<p>Copyright :copyright: 2014 David DeSandro</p>
+    <h1><a name="Masonry%20%E7%BB%93%E5%90%88%20ScrollSpy%20%E4%BD%BF%E7%94%A8" class="anchor" href="#Masonry%20%E7%BB%93%E5%90%88%20ScrollSpy%20%E4%BD%BF%E7%94%A8"><span class="header-link"></span></a>Masonry 结合 ScrollSpy 使用</h1><hr>
+<div id="js-container">
+
+</div>
+
+
+<script>
+  (function($) {
+    if (!$) {
+      return false;
+    }
+
+    $(function() {
+      var $c = $('#js-container');
+      $.getJSON('https://api.douban.com/v2/event/list?loc=beijing&type=music&callback=?').
+        then(function(data) {
+          data.events.forEach(function(item, index) {
+            if (index === 0) {
+              $c.append('<img src="' + item.image + '" />');
+            }
+          });
+          console.log(data);
+        })
+    });
+
+  })(window.jQuery);
+</script>
+
+
 
 
     <nav class="amp-pager">
