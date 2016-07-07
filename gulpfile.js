@@ -3,7 +3,8 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var browserify = require('browserify');
-var transform = require('vinyl-transform');
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
 var markJSON = require('markit-json');
 var docUtil = require('amazeui-doc-util');
 var browserSync = require('browser-sync');
@@ -11,10 +12,9 @@ var del = require('del');
 var runSequence = require('run-sequence');
 var reload = browserSync.reload;
 
-gulp.task('clean', function(cb) {
-  del('dist', cb);
+gulp.task('clean', function() {
+  return del('dist');
 });
-
 
 gulp.task('copy', function() {
   return gulp.src(['masonry*.js', 'docs/i/*.gif'])
@@ -26,7 +26,7 @@ gulp.task('copy', function() {
     }));
 });
 
-gulp.task('docs', function(){
+gulp.task('docs', function() {
   return gulp.src(['README.md', 'docs/*.md'])
     .pipe(markJSON(docUtil.markedOptions))
     .pipe(docUtil.applyTemplate(null, {
@@ -59,24 +59,19 @@ gulp.task('less', function() {
 });
 
 gulp.task('bundle', function() {
-  var bundler = transform(function(filename) {
-    var b = browserify({
-      entries: filename,
-      basedir: './'
-    });
-    return b.bundle();
+  var b = browserify({
+    entries: 'src/js/main.js',
+    basedir: './'
   });
 
-  return gulp.src('src/js/main.js')
-    .pipe(bundler)
-    .pipe($.rename({
-      basename: 'bundle'
-    }))
+  return b.bundle()
+    .pipe(source('bundle.js'))
+    .pipe(buffer())
     .pipe(gulp.dest('dist'))
 });
 
 // Watch Files For Changes & Reload
-gulp.task('serve', ['default'], function () {
+gulp.task('serve', ['default'], function() {
   browserSync({
     notify: false,
     server: 'dist',

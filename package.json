@@ -1,29 +1,30 @@
 {
-  "name": "masonry-layout",
-  "version": "3.2.2",
-  "description": "Cascading grid layout library",
-  "main": "echo.min.js",
+  "name": "amazeui-masonry",
+  "version": "4.1.0",
+  "description": "结合 Amaze UI 使用瀑布流",
+  "main": "src/js/main.js",
   "dependencies": {
     "amazeui": "^2.1.0"
   },
   "devDependencies": {
-    "amazeui-doc-util": "^0.1.0",
-    "browser-sync": "^1.9.0",
-    "browserify": "^8.1.0",
+    "amazeui-doc-util": "^0.7.1",
+    "browser-sync": "^2.13.0",
+    "browserify": "^13.0.1",
     "browserify-shim": "^3.8.2",
-    "del": "^1.1.1",
+    "del": "^2.2.1",
     "gulp": "^3.8.10",
-    "gulp-autoprefixer": "^2.1.0",
-    "gulp-csso": "^0.2.9",
-    "gulp-gh-pages": "^0.4.0",
-    "gulp-less": "^2.0.1",
-    "gulp-load-plugins": "^0.8.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-csso": "^2.0.0",
+    "gulp-gh-pages": "^0.5.4",
+    "gulp-less": "^3.1.0",
+    "gulp-load-plugins": "^1.2.4",
     "gulp-rename": "^1.2.0",
-    "handlebars": "^2.0.0",
+    "handlebars": "^4.0.5",
     "markit-json": "^0.2.1",
     "run-sequence": "^1.0.2",
-    "through2": "^0.6.3",
-    "vinyl-transform": "^1.0.0"
+    "through2": "^2.0.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   },
   "browserify": {
     "transform": [
@@ -49,5 +50,5 @@
   "bugs": {
     "url": "https://github.com/desandro/masonry/issues"
   },
-  "homepage": "http://masonry.desandro.com"
+  "homepage": "http://amazeui.github.io/masonry/"
 }

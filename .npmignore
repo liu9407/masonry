@@ -19,3 +19,4 @@ gulpfile.js
 nodemon.json
 composer.json
 bower.json
+.*
